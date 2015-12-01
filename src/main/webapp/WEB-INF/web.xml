@@ -34,8 +34,4 @@
 		<servlet-name>service</servlet-name>
 		<url-pattern>/*</url-pattern>
 	</servlet-mapping>
-
-	<listener>
-		<listener-class>com.lcsuo.rest.credit.services.listener.SysInfoListener</listener-class>
-	</listener>
 </web-app>
