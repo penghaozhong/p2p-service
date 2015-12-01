@@ -37,16 +37,6 @@ xmlns:mongo="http://www.springframework.org/schema/data/mongo"
   	<mongo:repositories base-package="com.lcsuo.p2p.service.dao" />
 	
 	<!-- 配置Ehcache缓存管理器 -->
-	<bean id="cacheManager" class="com.lcsuo.p2p.service.ehcache.WebEhCacheManagerFacotryBean">
-		<property name="configLocation">
-			<value>/WEB-INF/config/ehcache.xml</value>
-		</property>
-		<property name="diskStoreLocation">
-			<value>/WEB-INF/cache/application</value>
-		</property>
-	</bean>
 	
 	<!-- 配置spring task定时任务，扫描注解定时触发@Scheduled(cron = "0 25 12 ? * *")  -->
-	<task:annotation-driven scheduler="qbScheduler" mode="proxy"/>
-	<task:scheduler id="qbScheduler" pool-size="10"/>  
 </beans>
