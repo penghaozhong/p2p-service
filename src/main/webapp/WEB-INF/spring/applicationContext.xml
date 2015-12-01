@@ -32,12 +32,12 @@ xmlns:mongo="http://www.springframework.org/schema/data/mongo"
 	<mongo:mongo host="192.168.1.98" port="27017"/>
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate" >
 		<constructor-arg ref="mongo"/> 
-		<constructor-arg name="databaseName" value="lcsuo"/>   
+		<constructor-arg name="databaseName" value="p2p-data"/>   
 	</bean>
-  	<mongo:repositories base-package="com.lcsuo.rest.credit.services.dao" />
+  	<mongo:repositories base-package="com.lcsuo.p2p.service.dao" />
 	
 	<!-- 配置Ehcache缓存管理器 -->
-	<bean id="cacheManager" class="com.lcsuo.rest.credit.services.ehcache.WebEhCacheManagerFacotryBean">
+	<bean id="cacheManager" class="com.lcsuo.p2p.service.ehcache.WebEhCacheManagerFacotryBean">
 		<property name="configLocation">
 			<value>/WEB-INF/config/ehcache.xml</value>
 		</property>
@@ -46,18 +46,6 @@ xmlns:mongo="http://www.springframework.org/schema/data/mongo"
 		</property>
 	</bean>
 	
-	<!-- 配置一个简单的缓存工厂bean对象 -->
-	<bean id="simpleCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
-	    <property name="cacheManager" ref="cacheManager" />
-	    <!-- 使用缓存 关联ehcache.xml中的缓存配置 -->
-	    <property name="cacheName" value="mobileCache" />
-	</bean>
-	
-	<!-- 配置一个缓存拦截器对象，处理具体的缓存业务 -->
-	<bean id="initializingMobile" class="com.lcsuo.rest.credit.services.ehcache.InitializingMobile">
-		<property name="cacheManager" ref="cacheManager" />
-	    <property name="cache" ref="simpleCache"/>
-	</bean>
 	<!-- 配置spring task定时任务，扫描注解定时触发@Scheduled(cron = "0 25 12 ? * *")  -->
 	<task:annotation-driven scheduler="qbScheduler" mode="proxy"/>
 	<task:scheduler id="qbScheduler" pool-size="10"/>  

@@ -24,18 +24,8 @@
 
 	<context:annotation-config />
 
-	<!-- Scan these packages for Spring annotations. -->
 	<context:component-scan base-package="com.lcsuo" />
 
-	<!-- Simple strategy: json is preferred. <bean id="contentNegotiatingViewResolver" 
-		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver"> 
-		<property name="defaultViews"> <list> <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView"> 
-		</bean> <bean class="org.springframework.web.servlet.view.xml.MarshallingView"> 
-		<property name="marshaller"> <bean class="org.springframework.oxm.jaxb.Jaxb2Marshaller"> 
-		<property name="packagesToScan" value="com.tryout" /> </bean> </property> 
-		</bean> </list> </property> </bean> -->
-
-	<!-- Simple strategy: json is preferred. -->
 	<bean id="contentNegotiationManager"
 		class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
 		<property name="defaultContentType" value="application/json" />
