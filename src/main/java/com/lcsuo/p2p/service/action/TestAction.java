@@ -8,9 +8,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class TestAction {
 	
-	@RequestMapping(value = "/test", method = RequestMethod.GET)
+	@RequestMapping(value = "/test1", method = RequestMethod.GET)
 	@ResponseBody
 	public String test() {
+		return "test";
+	}
+	
+	
+	@RequestMapping(value = "/test", method = RequestMethod.POST)
+	@ResponseBody
+	public String testPost(String signature, String timeStamp ,String data) {
+		System.out.println(signature+" = "+timeStamp +" = "+data);
 		return "test";
 	}
 
